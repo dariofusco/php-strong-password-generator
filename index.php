@@ -1,6 +1,19 @@
 <?php
-$passwordLength = isset($_GET['generatePassword']) ? $_GET['generatePassword'] : '';
-var_dump($passwordLength);
+
+$passwordLunghezza = isset($_GET['generaPassword']) ? $_GET['generaPassword'] : '';
+
+function generaPassword($passwordLunghezza)
+{
+    $caratteri = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!?~@#-_+<>[]{}';
+    $password = array();
+    $caratteriLunghezza = strlen($caratteri) - 1;
+    for ($i = 0; $i < $passwordLunghezza; $i++) {
+        $numeriRandom = rand(0, $caratteriLunghezza);
+        $password[] = $caratteri[$numeriRandom];
+    };
+    return implode($password);
+};
+
 ?>
 
 <!DOCTYPE html>
@@ -14,19 +27,23 @@ var_dump($passwordLength);
 </head>
 
 <body>
+
     <div class="container">
+        <h1 class="py-5 text-success">Php Password Generator</h1>
         <div class="row">
             <div class="col">
                 <form action="index.php" method="GET">
                     <div class="mb-3">
-                        <label class="form-label">Inserisci lunghezza password da generare</label>
-                        <input class="form-control" name="generatePassword">
+                        <label class="form-label">Inserisci lunghezza password da generare:</label>
+                        <input class="form-control" name="generaPassword" style="width: 250px;">
                     </div>
                     <button type="submit" class="btn btn-primary">Genera</button>
+                    <h2 class="py-4">La tua password è: <span class="text-danger"><?php echo generaPassword($passwordLunghezza) ?></span></h2>
                 </form>
             </div>
         </div>
     </div>
+
 </body>
 
 </html>
