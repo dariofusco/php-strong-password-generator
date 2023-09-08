@@ -1,4 +1,6 @@
 <?php
+$passwordLength = isset($_GET['generatePassword']) ? $_GET['generatePassword'] : '';
+var_dump($passwordLength);
 ?>
 
 <!DOCTYPE html>
@@ -12,7 +14,19 @@
 </head>
 
 <body>
-
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <form action="index.php" method="GET">
+                    <div class="mb-3">
+                        <label class="form-label">Inserisci lunghezza password da generare</label>
+                        <input class="form-control" name="generatePassword">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Genera</button>
+                </form>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>
